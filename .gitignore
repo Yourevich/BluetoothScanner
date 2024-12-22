@@ -1,0 +1,31 @@
+# Xcode
+DerivedData/
+.DS_Store
+*.xcworkspace
+xcuserdata/
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+
+# Swift Packages
+.build/
+.swiftpm/
+Packages/
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+
+# SPM
+Package.resolved
+
+# Logs
+*.log
+
+# Temporary
+*.tmp
+
+# Environment
+.env
