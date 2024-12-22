@@ -15,6 +15,7 @@
 		4DF8B24E2D17BB7400523F33 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B24D2D17BB7400523F33 /* DeviceModel.swift */; };
 		4DF8B2502D17BC8300523F33 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B24F2D17BC8300523F33 /* MainViewModel.swift */; };
 		4DF8B2562D18528100523F33 /* BluetoothScannerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B2542D18528100523F33 /* BluetoothScannerModel.xcdatamodeld */; };
+		4DF8B2592D18603C00523F33 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B2582D18603C00523F33 /* DatabaseService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		4DF8B24F2D17BC8300523F33 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		4DF8B2532D184C3B00523F33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4DF8B2552D18528100523F33 /* BluetoothScannerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BluetoothScannerModel.xcdatamodel; sourceTree = "<group>"; };
+		4DF8B2582D18603C00523F33 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +46,6 @@
 		4DF8B22B2D17B35100523F33 = {
 			isa = PBXGroup;
 			children = (
-				4DF8B2572D185A5500523F33 /* CoreData */,
 				4DF8B2362D17B35100523F33 /* BluetoothScanner */,
 				4DF8B2352D17B35100523F33 /* Products */,
 			);
@@ -61,6 +62,7 @@
 		4DF8B2362D17B35100523F33 /* BluetoothScanner */ = {
 			isa = PBXGroup;
 			children = (
+				4DF8B2572D185A5500523F33 /* CoreData */,
 				4DF8B2532D184C3B00523F33 /* Info.plist */,
 				4DF8B24A2D17B40D00523F33 /* Services */,
 				4DF8B2492D17B40200523F33 /* ViewModel */,
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				4DF8B24B2D17BB3D00523F33 /* CoreBluetoothService.swift */,
+				4DF8B2582D18603C00523F33 /* DatabaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DF8B2502D17BC8300523F33 /* MainViewModel.swift in Sources */,
+				4DF8B2592D18603C00523F33 /* DatabaseService.swift in Sources */,
 				4DF8B2562D18528100523F33 /* BluetoothScannerModel.xcdatamodeld in Sources */,
 				4DF8B24C2D17BB3D00523F33 /* CoreBluetoothService.swift in Sources */,
 				4DF8B24E2D17BB7400523F33 /* DeviceModel.swift in Sources */,
