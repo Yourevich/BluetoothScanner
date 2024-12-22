@@ -8,16 +8,28 @@
 import SwiftUI
 
 struct MainScanView: View {
+    @StateObject private var viewModel = MainViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        NavigationView {
+                    VStack {
+                        List(viewModel.devices) { device in
+                            VStack(alignment: .leading) {
+                                Text(device.name).font(.headline)
+                                Text("UUID: \(device.uuid)")
+                                Text("RSSI: \(device.rssi)")
+                            }
+                        }
+
+                        Button("Start Scanning") {
+                            viewModel.startScanning()
+                        }
+                        .padding()
+                    }
+                    .navigationTitle("Bluetooth Scanner")
+                }
+            }
     }
-}
 
 #Preview {
     MainScanView()
