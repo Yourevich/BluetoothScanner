@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D00D3222D19C2D7008FA944 /* BluetoothServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D00D3212D19C2D7008FA944 /* BluetoothServiceProtocol.swift */; };
+		4D00D3242D19C642008FA944 /* DatabaseServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D00D3232D19C642008FA944 /* DatabaseServiceProtocol.swift */; };
+		4D00D3272D19C830008FA944 /* MainViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D00D3262D19C830008FA944 /* MainViewModelProtocol.swift */; };
+		4D00D3292D19D84A008FA944 /* PeripheralState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D00D3282D19D84A008FA944 /* PeripheralState.swift */; };
+		4D00D32C2D19D945008FA944 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D00D32B2D19D945008FA944 /* DateFormatter.swift */; };
 		4DF8B2382D17B35100523F33 /* BluetoothScannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B2372D17B35100523F33 /* BluetoothScannerApp.swift */; };
 		4DF8B23A2D17B35100523F33 /* MainScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B2392D17B35100523F33 /* MainScanView.swift */; };
 		4DF8B23C2D17B35200523F33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DF8B23B2D17B35200523F33 /* Assets.xcassets */; };
@@ -18,12 +23,17 @@
 		4DF8B2592D18603C00523F33 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B2582D18603C00523F33 /* DatabaseService.swift */; };
 		4DF8B25B2D189FB200523F33 /* ModePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B25A2D189FB200523F33 /* ModePickerView.swift */; };
 		4DF8B25D2D189FD300523F33 /* DeviceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B25C2D189FD300523F33 /* DeviceListView.swift */; };
-		4DF8B25F2D189FE900523F33 /* WelcomeCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B25E2D189FE900523F33 /* WelcomeCircleView.swift */; };
+		4DF8B25F2D189FE900523F33 /* EmptySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B25E2D189FE900523F33 /* EmptySearchView.swift */; };
 		4DF8B2612D18A07F00523F33 /* FilledButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B2602D18A07F00523F33 /* FilledButtonStyle.swift */; };
-		4DF8B2642D18A27700523F33 /* BluetoothError.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B2632D18A27700523F33 /* BluetoothError.swift.swift */; };
+		4DF8B2642D18A27700523F33 /* BluetoothError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B2632D18A27700523F33 /* BluetoothError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D00D3212D19C2D7008FA944 /* BluetoothServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothServiceProtocol.swift; sourceTree = "<group>"; };
+		4D00D3232D19C642008FA944 /* DatabaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseServiceProtocol.swift; sourceTree = "<group>"; };
+		4D00D3262D19C830008FA944 /* MainViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelProtocol.swift; sourceTree = "<group>"; };
+		4D00D3282D19D84A008FA944 /* PeripheralState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralState.swift; sourceTree = "<group>"; };
+		4D00D32B2D19D945008FA944 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		4DF8B2342D17B35100523F33 /* BluetoothScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DF8B2372D17B35100523F33 /* BluetoothScannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothScannerApp.swift; sourceTree = "<group>"; };
 		4DF8B2392D17B35100523F33 /* MainScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScanView.swift; sourceTree = "<group>"; };
@@ -37,9 +47,9 @@
 		4DF8B2582D18603C00523F33 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		4DF8B25A2D189FB200523F33 /* ModePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModePickerView.swift; sourceTree = "<group>"; };
 		4DF8B25C2D189FD300523F33 /* DeviceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListView.swift; sourceTree = "<group>"; };
-		4DF8B25E2D189FE900523F33 /* WelcomeCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCircleView.swift; sourceTree = "<group>"; };
+		4DF8B25E2D189FE900523F33 /* EmptySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchView.swift; sourceTree = "<group>"; };
 		4DF8B2602D18A07F00523F33 /* FilledButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButtonStyle.swift; sourceTree = "<group>"; };
-		4DF8B2632D18A27700523F33 /* BluetoothError.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothError.swift.swift; sourceTree = "<group>"; };
+		4DF8B2632D18A27700523F33 /* BluetoothError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +63,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D00D3202D19C2A7008FA944 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4D00D3212D19C2D7008FA944 /* BluetoothServiceProtocol.swift */,
+				4D00D3232D19C642008FA944 /* DatabaseServiceProtocol.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		4D00D3252D19C826008FA944 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4D00D3262D19C830008FA944 /* MainViewModelProtocol.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		4D00D32A2D19D93C008FA944 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4D00D32B2D19D945008FA944 /* DateFormatter.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4DF8B22B2D17B35100523F33 = {
 			isa = PBXGroup;
 			children = (
@@ -74,13 +109,13 @@
 			children = (
 				4DF8B2622D18A25C00523F33 /* ErrorHandling */,
 				4DF8B2572D185A5500523F33 /* CoreData */,
-				4DF8B2532D184C3B00523F33 /* Info.plist */,
 				4DF8B24A2D17B40D00523F33 /* Services */,
 				4DF8B2492D17B40200523F33 /* ViewModel */,
 				4DF8B2482D17B3FB00523F33 /* Model */,
 				4DF8B2472D17B3F500523F33 /* App */,
 				4DF8B2462D17B3EA00523F33 /* Views */,
 				4DF8B23B2D17B35200523F33 /* Assets.xcassets */,
+				4DF8B2532D184C3B00523F33 /* Info.plist */,
 				4DF8B23D2D17B35200523F33 /* Preview Content */,
 			);
 			path = BluetoothScanner;
@@ -100,7 +135,7 @@
 				4DF8B2392D17B35100523F33 /* MainScanView.swift */,
 				4DF8B25A2D189FB200523F33 /* ModePickerView.swift */,
 				4DF8B25C2D189FD300523F33 /* DeviceListView.swift */,
-				4DF8B25E2D189FE900523F33 /* WelcomeCircleView.swift */,
+				4DF8B25E2D189FE900523F33 /* EmptySearchView.swift */,
 				4DF8B2602D18A07F00523F33 /* FilledButtonStyle.swift */,
 			);
 			path = Views;
@@ -117,7 +152,9 @@
 		4DF8B2482D17B3FB00523F33 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4D00D32A2D19D93C008FA944 /* Extensions */,
 				4DF8B24D2D17BB7400523F33 /* DeviceModel.swift */,
+				4D00D3282D19D84A008FA944 /* PeripheralState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -125,6 +162,7 @@
 		4DF8B2492D17B40200523F33 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4D00D3252D19C826008FA944 /* Protocols */,
 				4DF8B24F2D17BC8300523F33 /* MainViewModel.swift */,
 			);
 			path = ViewModel;
@@ -133,6 +171,7 @@
 		4DF8B24A2D17B40D00523F33 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4D00D3202D19C2A7008FA944 /* Protocols */,
 				4DF8B24B2D17BB3D00523F33 /* CoreBluetoothService.swift */,
 				4DF8B2582D18603C00523F33 /* DatabaseService.swift */,
 			);
@@ -150,7 +189,7 @@
 		4DF8B2622D18A25C00523F33 /* ErrorHandling */ = {
 			isa = PBXGroup;
 			children = (
-				4DF8B2632D18A27700523F33 /* BluetoothError.swift.swift */,
+				4DF8B2632D18A27700523F33 /* BluetoothError.swift */,
 			);
 			path = ErrorHandling;
 			sourceTree = "<group>";
@@ -225,16 +264,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DF8B2642D18A27700523F33 /* BluetoothError.swift.swift in Sources */,
+				4DF8B2642D18A27700523F33 /* BluetoothError.swift in Sources */,
 				4DF8B2502D17BC8300523F33 /* MainViewModel.swift in Sources */,
-				4DF8B25F2D189FE900523F33 /* WelcomeCircleView.swift in Sources */,
+				4DF8B25F2D189FE900523F33 /* EmptySearchView.swift in Sources */,
 				4DF8B2592D18603C00523F33 /* DatabaseService.swift in Sources */,
 				4DF8B2562D18528100523F33 /* BluetoothScannerModel.xcdatamodeld in Sources */,
+				4D00D3222D19C2D7008FA944 /* BluetoothServiceProtocol.swift in Sources */,
+				4D00D3272D19C830008FA944 /* MainViewModelProtocol.swift in Sources */,
+				4D00D32C2D19D945008FA944 /* DateFormatter.swift in Sources */,
 				4DF8B24C2D17BB3D00523F33 /* CoreBluetoothService.swift in Sources */,
 				4DF8B24E2D17BB7400523F33 /* DeviceModel.swift in Sources */,
 				4DF8B25B2D189FB200523F33 /* ModePickerView.swift in Sources */,
 				4DF8B25D2D189FD300523F33 /* DeviceListView.swift in Sources */,
+				4D00D3242D19C642008FA944 /* DatabaseServiceProtocol.swift in Sources */,
 				4DF8B2612D18A07F00523F33 /* FilledButtonStyle.swift in Sources */,
+				4D00D3292D19D84A008FA944 /* PeripheralState.swift in Sources */,
 				4DF8B23A2D17B35100523F33 /* MainScanView.swift in Sources */,
 				4DF8B2382D17B35100523F33 /* BluetoothScannerApp.swift in Sources */,
 			);
@@ -375,11 +419,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
 				INFOPLIST_FILE = BluetoothScanner/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app uses Bluetooth to scan for and display nearby devices.";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "This app connects to Bluetooth devices to enhance your experience.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -407,11 +453,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
 				INFOPLIST_FILE = BluetoothScanner/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app uses Bluetooth to scan for and display nearby devices.";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "This app connects to Bluetooth devices to enhance your experience.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

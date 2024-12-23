@@ -9,96 +9,101 @@ import Foundation
 import CoreBluetooth
 import Combine
 
+final class CoreBluetoothService: NSObject, ObservableObject, BluetoothServiceProtocol {
 
-final class CoreBluetoothService: NSObject, ObservableObject {
+    var discoveredDevices: AnyPublisher<[BluetoothDevice], Never> {
+        $publishedDiscoveredDevices.eraseToAnyPublisher()
+    }
+    var error: AnyPublisher<BluetoothError?, Never> {
+        $publishedError.eraseToAnyPublisher()
+    }
+
+    @Published private var publishedDiscoveredDevices: [BluetoothDevice] = []
+    @Published private var publishedError: BluetoothError?
+
     private var centralManager: CBCentralManager?
     private var discoveredDevicesSubject = PassthroughSubject<BluetoothDevice, Never>()
-    @Published var discoveredDevices: [BluetoothDevice] = []
-    @Published var error: BluetoothError? 
-
-    private var discoveredDeviceUUIDs = Set<String>()
+    private var discoveredDeviceUUIDs = Set<UUID>()
     private var cancellables = Set<AnyCancellable>()
-    
+
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        
+
         discoveredDevicesSubject
-            .scan([]) { devices, newDevice in
-                var updatedDevices = devices
-                if let index = updatedDevices.firstIndex(where: { $0.uuid == newDevice.uuid }) {
-                    updatedDevices[index] = newDevice
-                } else {
-                    updatedDevices.append(newDevice)
-                }
-                return updatedDevices
+            .scan([UUID: BluetoothDevice]()) { devices, newDevice in
+                var devices = devices
+                devices[newDevice.uuid] = newDevice
+                return devices
             }
-            .assign(to: &$discoveredDevices)
+            .debounce(for: .milliseconds(300), scheduler: DispatchQueue.global(qos: .background))
+            .map { dict in dict.values.sorted(by: { $0.name < $1.name }) }
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$publishedDiscoveredDevices)
     }
-    
+
     func startScanning() {
-        guard let centralManager = centralManager else {
-            error = .scanningFailed
+        guard centralManager?.state == .poweredOn else {
+            publishedError = .bluetoothOff
             return
         }
-        
-        guard centralManager.state == .poweredOn else {
-            error = .bluetoothOff
-            return
-        }
-        
-        centralManager.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
+        centralManager?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
     }
-    
+
     func stopScanning() {
         centralManager?.stopScan()
     }
-    
-    private func mapPeripheralState(_ state: CBPeripheralState) -> String {
+
+    private func mapPeripheralState(_ state: CBPeripheralState) -> PeripheralState {
         switch state {
-        case .connected: return "Connected"
-        case .connecting: return "Connecting"
-        case .disconnected: return "Disconnected"
-        case .disconnecting: return "Disconnecting"
-        @unknown default: return "Unknown"
+        case .connected:
+            return .connected
+        case .connecting:
+            return .connecting
+        case .disconnected:
+            return .disconnected
+        case .disconnecting:
+            return .disconnecting
+        @unknown default:
+            return .unknown
         }
     }
 }
 
-// MARK: - CBCentralManagerDelegate
 extension CoreBluetoothService: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-            switch central.state {
-            case .poweredOn:
-                break
-            case .poweredOff:
-                error = .bluetoothOff
-            case .unauthorized:
-                error = .unauthorized
-            case .unsupported:
-                error = .unsupported
-            case .resetting:
-                error = .resetting
-            case .unknown:
-                error = .unknown
-            @unknown default:
-                error = .unknown
-            }
+        switch central.state {
+        case .poweredOn:
+            publishedError = nil
+        case .poweredOff:
+            publishedError = .bluetoothOff
+        case .unauthorized:
+            publishedError = .unauthorized
+        case .unsupported:
+            publishedError = .unsupported
+        case .resetting:
+            publishedError = .resetting
+        case .unknown:
+            publishedError = .unknown
+        @unknown default:
+            publishedError = .unknown
         }
-    
+    }
+
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
-        guard !discoveredDeviceUUIDs.contains(peripheral.identifier.uuidString) else { return }
-        discoveredDeviceUUIDs.insert(peripheral.identifier.uuidString)
-        
+        guard !discoveredDeviceUUIDs.contains(peripheral.identifier) else { return }
+        discoveredDeviceUUIDs.insert(peripheral.identifier)
+
         let device = BluetoothDevice(
             name: peripheral.name ?? "Unknown",
-            uuid: peripheral.identifier.uuidString,
+            uuid: peripheral.identifier, 
             rssi: RSSI.intValue,
             lastSeen: Date(),
-            status: mapPeripheralState(peripheral.state)
+            status: mapPeripheralState(peripheral.state).rawValue
         )
-        
+
         discoveredDevicesSubject.send(device)
     }
 }
+
 

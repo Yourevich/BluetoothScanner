@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct MainScanView: View {
-    @StateObject private var viewModel = MainViewModel()
+    @StateObject private var viewModel: MainViewModel
     @State private var showSortOptions = false
     @State private var isScanning = false
-
+    private let impactGenerator = UIImpactFeedbackGenerator(style: .medium)
+    @State private var showErrorAlert = false
+    
+    init(bluetoothService: BluetoothServiceProtocol = CoreBluetoothService(),
+         databaseService: DatabaseServiceProtocol = DatabaseService.shared) {
+        _viewModel = StateObject(wrappedValue: MainViewModel(bluetoothService: bluetoothService, databaseService: databaseService))
+    }
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
@@ -19,7 +26,7 @@ struct MainScanView: View {
                     currentMode: $viewModel.currentMode,
                     loadHistory: { viewModel.loadHistory() }
                 )
-
+                
                 ZStack {
                     if isScanning {
                         HStack {
@@ -34,10 +41,10 @@ struct MainScanView: View {
                 }
                 .padding(20)
                 .animation(.easeInOut, value: isScanning)
-
+                
                 ZStack {
                     if viewModel.currentMode == .scanning && viewModel.devices.isEmpty && !isScanning {
-                        WelcomeCircleView()
+                        EmptySearchView()
                     } else {
                         DeviceListView(
                             devices: viewModel.currentMode == .scanning ? viewModel.devices : viewModel.history,
@@ -47,20 +54,20 @@ struct MainScanView: View {
                     }
                 }
                 .animation(.easeInOut, value: viewModel.devices.isEmpty)
-
+                
                 if viewModel.currentMode == .scanning {
                     HStack {
                         Button("Start Scanning") {
                             isScanning = true
                             viewModel.startScanning()
-                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            impactGenerator.impactOccurred()
                         }
                         .buttonStyle(FilledButtonStyle(color: .green))
-
+                        
                         Button("Stop Scanning") {
                             isScanning = false
                             viewModel.stopScanning()
-                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            impactGenerator.impactOccurred()
                         }
                         .buttonStyle(FilledButtonStyle(color: .red))
                     }
@@ -85,6 +92,18 @@ struct MainScanView: View {
                     viewModel.sortHistoryByLastSeen()
                 }
                 Button("Cancel", role: .cancel) {}
+            }
+            .alert(item: $viewModel.error) { error in
+                Alert(
+                    title: Text("Error"),
+                    message: Text(error.localizedDescription),
+                    dismissButton: .default(Text("OK")) {
+                        viewModel.clearError()
+                    }
+                )
+            }
+            .task {
+                impactGenerator.prepare() 
             }
         }
     }
