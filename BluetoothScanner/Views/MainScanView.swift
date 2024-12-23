@@ -9,67 +9,84 @@ import SwiftUI
 
 struct MainScanView: View {
     @StateObject private var viewModel = MainViewModel()
+    @State private var showSortOptions = false
+    @State private var isScanning = false
 
     var body: some View {
         NavigationView {
-            VStack {
-                // SegmentedControl для переключения между режимами
-                Picker("Mode", selection: $viewModel.currentMode) {
-                    Text("Scanning").tag(MainViewModel.Mode.scanning)
-                    Text("History").tag(MainViewModel.Mode.history)
-                }
-                .onChange(of: viewModel.currentMode) { mode in
-                    print("Switched to mode: \(mode)")
-                    if mode == .history {
-                        viewModel.loadHistory()
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
+            VStack(spacing: 0) {
+                ModePickerView(
+                    currentMode: $viewModel.currentMode,
+                    loadHistory: { viewModel.loadHistory() }
+                )
 
-                // Отображение списка в зависимости от режима
-                if viewModel.currentMode == .scanning {
-                    List(viewModel.devices) { device in
-                        VStack(alignment: .leading) {
-                            Text(device.name).font(.headline)
-                            Text("UUID: \(device.uuid)")
-                            Text("RSSI: \(device.rssi)")
+                ZStack {
+                    if isScanning {
+                        HStack {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                            Text("Scanning...")
+                                .font(.headline)
+                                .foregroundColor(.gray)
                         }
-                    }
-                } else if viewModel.currentMode == .history {
-                    List(viewModel.history) { device in
-                        VStack(alignment: .leading) {
-                            Text(device.name).font(.headline)
-                            Text("UUID: \(device.uuid)")
-                            Text("Last Seen: \(device.lastSeenFormatted)")
-                        }
+                        .transition(.opacity)
                     }
                 }
+                .padding(20)
+                .animation(.easeInOut, value: isScanning)
 
-                // Кнопки управления сканированием
+                ZStack {
+                    if viewModel.currentMode == .scanning && viewModel.devices.isEmpty && !isScanning {
+                        WelcomeCircleView()
+                    } else {
+                        DeviceListView(
+                            devices: viewModel.currentMode == .scanning ? viewModel.devices : viewModel.history,
+                            showLastSeen: viewModel.currentMode == .history,
+                            calculateSignalPercentage: viewModel.calculateSignalPercentage
+                        )
+                    }
+                }
+                .animation(.easeInOut, value: viewModel.devices.isEmpty)
+
                 if viewModel.currentMode == .scanning {
                     HStack {
                         Button("Start Scanning") {
+                            isScanning = true
                             viewModel.startScanning()
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                         }
+                        .buttonStyle(FilledButtonStyle(color: .green))
+
                         Button("Stop Scanning") {
+                            isScanning = false
                             viewModel.stopScanning()
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                         }
+                        .buttonStyle(FilledButtonStyle(color: .red))
                     }
                     .padding()
                 }
             }
             .navigationTitle("Bluetooth Scanner")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if viewModel.currentMode == .history {
+                        Button(action: { showSortOptions = true }) {
+                            Image(systemName: "ellipsis.circle")
+                        }
+                    }
+                }
+            }
+            .alert("Sort Options", isPresented: $showSortOptions) {
+                Button("By Name") {
+                    viewModel.sortHistoryByName()
+                }
+                Button("By Last Seen") {
+                    viewModel.sortHistoryByLastSeen()
+                }
+                Button("Cancel", role: .cancel) {}
+            }
         }
-    }
-}
-
-extension BluetoothDevice {
-    var lastSeenFormatted: String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .short
-        return formatter.string(from: Date())
     }
 }
 

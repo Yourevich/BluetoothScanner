@@ -16,6 +16,11 @@
 		4DF8B2502D17BC8300523F33 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B24F2D17BC8300523F33 /* MainViewModel.swift */; };
 		4DF8B2562D18528100523F33 /* BluetoothScannerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B2542D18528100523F33 /* BluetoothScannerModel.xcdatamodeld */; };
 		4DF8B2592D18603C00523F33 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B2582D18603C00523F33 /* DatabaseService.swift */; };
+		4DF8B25B2D189FB200523F33 /* ModePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B25A2D189FB200523F33 /* ModePickerView.swift */; };
+		4DF8B25D2D189FD300523F33 /* DeviceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B25C2D189FD300523F33 /* DeviceListView.swift */; };
+		4DF8B25F2D189FE900523F33 /* WelcomeCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B25E2D189FE900523F33 /* WelcomeCircleView.swift */; };
+		4DF8B2612D18A07F00523F33 /* FilledButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B2602D18A07F00523F33 /* FilledButtonStyle.swift */; };
+		4DF8B2642D18A27700523F33 /* BluetoothError.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF8B2632D18A27700523F33 /* BluetoothError.swift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,11 @@
 		4DF8B2532D184C3B00523F33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4DF8B2552D18528100523F33 /* BluetoothScannerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BluetoothScannerModel.xcdatamodel; sourceTree = "<group>"; };
 		4DF8B2582D18603C00523F33 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		4DF8B25A2D189FB200523F33 /* ModePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModePickerView.swift; sourceTree = "<group>"; };
+		4DF8B25C2D189FD300523F33 /* DeviceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListView.swift; sourceTree = "<group>"; };
+		4DF8B25E2D189FE900523F33 /* WelcomeCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCircleView.swift; sourceTree = "<group>"; };
+		4DF8B2602D18A07F00523F33 /* FilledButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButtonStyle.swift; sourceTree = "<group>"; };
+		4DF8B2632D18A27700523F33 /* BluetoothError.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothError.swift.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +72,7 @@
 		4DF8B2362D17B35100523F33 /* BluetoothScanner */ = {
 			isa = PBXGroup;
 			children = (
+				4DF8B2622D18A25C00523F33 /* ErrorHandling */,
 				4DF8B2572D185A5500523F33 /* CoreData */,
 				4DF8B2532D184C3B00523F33 /* Info.plist */,
 				4DF8B24A2D17B40D00523F33 /* Services */,
@@ -87,6 +98,10 @@
 			isa = PBXGroup;
 			children = (
 				4DF8B2392D17B35100523F33 /* MainScanView.swift */,
+				4DF8B25A2D189FB200523F33 /* ModePickerView.swift */,
+				4DF8B25C2D189FD300523F33 /* DeviceListView.swift */,
+				4DF8B25E2D189FE900523F33 /* WelcomeCircleView.swift */,
+				4DF8B2602D18A07F00523F33 /* FilledButtonStyle.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -130,6 +145,14 @@
 				4DF8B2542D18528100523F33 /* BluetoothScannerModel.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		4DF8B2622D18A25C00523F33 /* ErrorHandling */ = {
+			isa = PBXGroup;
+			children = (
+				4DF8B2632D18A27700523F33 /* BluetoothError.swift.swift */,
+			);
+			path = ErrorHandling;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,11 +225,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DF8B2642D18A27700523F33 /* BluetoothError.swift.swift in Sources */,
 				4DF8B2502D17BC8300523F33 /* MainViewModel.swift in Sources */,
+				4DF8B25F2D189FE900523F33 /* WelcomeCircleView.swift in Sources */,
 				4DF8B2592D18603C00523F33 /* DatabaseService.swift in Sources */,
 				4DF8B2562D18528100523F33 /* BluetoothScannerModel.xcdatamodeld in Sources */,
 				4DF8B24C2D17BB3D00523F33 /* CoreBluetoothService.swift in Sources */,
 				4DF8B24E2D17BB7400523F33 /* DeviceModel.swift in Sources */,
+				4DF8B25B2D189FB200523F33 /* ModePickerView.swift in Sources */,
+				4DF8B25D2D189FD300523F33 /* DeviceListView.swift in Sources */,
+				4DF8B2612D18A07F00523F33 /* FilledButtonStyle.swift in Sources */,
 				4DF8B23A2D17B35100523F33 /* MainScanView.swift in Sources */,
 				4DF8B2382D17B35100523F33 /* BluetoothScannerApp.swift in Sources */,
 			);
